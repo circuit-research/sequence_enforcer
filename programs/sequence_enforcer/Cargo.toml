@@ -2,7 +2,7 @@
 name = "sequence_enforcer"
 version = "0.1.0"
 description = "Created with Anchor"
-edition = "2018"
+edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
@@ -13,6 +13,11 @@ no-entrypoint = []
 no-idl = []
 cpi = ["no-entrypoint"]
 default = []
+idl-build = ["anchor-lang/idl-build"]
 
 [dependencies]
-anchor-lang = "0.18.0"
+anchor-lang = { version = "*", features = ["init-if-needed"] }
+# https://github.com/solana-labs/solana/issues/34987
+solana-program = "=1.17.0"
+# https://solana.stackexchange.com/questions/8800/error-use-of-unstable-library-feature-build-hasher-simple-hash-one
+ahash = "=0.8.6"

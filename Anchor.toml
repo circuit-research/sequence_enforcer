@@ -1,12 +1,16 @@
+[toolchain]
+anchor_version = "0.29.0"
+solana_version = "1.17.0"
+
 [programs.localnet]
-sequence_enforcer = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+sequence_enforcer = "6Yvr31ELNTbZmU4eb2HXyV1zPDC14LNpuAzHopLdm8P7"
 
 [registry]
-url = "https://anchor.projectserum.com"
+url = "https://api.apr.dev"
 
 [provider]
 cluster = "localnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]
-test = "ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+test = "yarn ts-mocha -p ./tsconfig.json -t 10000 tests/**/*.ts"

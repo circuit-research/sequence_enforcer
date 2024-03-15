@@ -1,4 +1,3 @@
 [workspace]
-members = [
-    "programs/*"
-]
+members = ["programs/*"]
+resolver = "2"
