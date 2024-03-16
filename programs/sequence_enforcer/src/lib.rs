@@ -95,7 +95,7 @@ pub struct SequenceAccount {
 }
 
 impl SequenceAccount {
-    pub const MAX_SIZE: usize = 2 + 64;
+    pub const MAX_SIZE: usize = 8 + 32;
 }
 
 #[error_code]
