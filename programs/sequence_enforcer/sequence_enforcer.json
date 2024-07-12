@@ -33,6 +33,16 @@
       ]
     },
     {
+      "name": "checkTtl",
+      "accounts": [],
+      "args": [
+        {
+          "name": "ttl",
+          "type": "u64"
+        }
+      ]
+    },
+    {
       "name": "resetSequenceNumber",
       "accounts": [
         {

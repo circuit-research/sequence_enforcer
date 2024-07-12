@@ -68,6 +68,7 @@ describe("sequence_enforcer", () => {
         },
       });
     } catch (e) {
+      console.assert(true);
       return;
     }
 
@@ -116,9 +117,37 @@ describe("sequence_enforcer", () => {
         },
       );
     } catch (e) {
+      console.assert(true);
       return;
     }
 
     console.assert(false);
+  });
+
+  it("checkTTL expired", async () => {
+    try {
+      await program.rpc.checkTtl(
+        new anchor.BN((Date.now() - 30_000) / 1_000),
+        {accounts: {}},
+      );
+      console.assert(false);
+    } catch (e) {
+      console.error(e);
+      console.assert(true);
+    }
+  });
+
+  it("checkTTL ok", async () => {
+    try {
+      const res = await program.rpc.checkTtl(
+        new anchor.BN((Date.now() + 30_000) / 1_000),
+        {accounts: {}},
+      );
+      console.assert(true);
+    } catch (e) {
+      console.error(e);
+      console.assert(false);
+      return;
+    }
   });
 });
