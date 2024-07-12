@@ -12,6 +12,16 @@ pub mod sequence_enforcer {
         Ok(())
     }
 
+    pub fn check_ttl(_ctx: Context<Empty>, ttl: u64) -> Result<()> {
+        let clock = Clock::get()?;
+        if (ttl as i64) < clock.unix_timestamp {
+            msg!("TTL expired | ttl={} | now={}", ttl, clock.unix_timestamp);
+            return Err(ErrorCode::Expired.into());
+        }
+
+        Ok(())
+    }
+
     pub fn reset_sequence_number(
         ctx: Context<ResetSequenceNumber>,
         sequence_num: u64,
@@ -97,6 +107,9 @@ pub struct SequenceAccount {
 impl SequenceAccount {
     pub const MAX_SIZE: usize = 8 + 32;
 }
+
+#[derive(Accounts)]
+pub struct Empty {}
 
 #[error_code]
 pub enum ErrorCode {
